@@ -1,0 +1,152 @@
+SQL> create table doctors(id integer primary key, name varchar2(20), specalization varchar2(10));
+
+Table created.
+
+SQL> create table patients(id integer primary key, name varchar(20) not null, address varchar(10), doctor_id integer, foreign key(doctor_id) references doctors(id));
+
+Table created.
+
+SQL> desc doctors;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ SPECALIZATION                                      VARCHAR2(10)
+
+SQL> desc patients;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                      NOT NULL VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(10)
+ DOCTOR_ID                                          NUMBER(38)
+
+SQL> alter table patients add age integer;
+
+Table altered.
+
+SQL> desc patients;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                      NOT NULL VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(10)
+ DOCTOR_ID                                          NUMBER(38)
+ AGE                                                NUMBER(38)
+
+SQL> alter table drop column age;
+alter table drop column age
+            *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> alter table patients drop column age;
+
+Table altered.
+
+SQL> insert into doctors(101, 'Ravi', 'Heart');
+insert into doctors(101, 'Ravi', 'Heart')
+                    *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into doctors values(101, 'Ravi', 'Heart');
+
+1 row created.
+
+SQL> insert into doctors values(102, 'Ramu', 'Brain');
+
+1 row created.
+
+SQL> insert into doctors values(103, 'Rajesh', 'Bones');
+
+1 row created.
+
+SQL> insert into patients values(101,'Prasad', 'GNT', 101);
+
+1 row created.
+
+SQL> insert into patients values(102,'Mukesh', 'HYD', 103);
+
+1 row created.
+
+SQL> insert into patients values(104,'Ramesh', 'HYD', 102);
+
+1 row created.
+
+SQL> selct * from patients;
+SP2-0734: unknown command beginning "selct * fr..." - rest of line ignored.
+SQL> select * from patients;
+
+        ID NAME                 ADDRESS     DOCTOR_ID                           
+---------- -------------------- ---------- ----------                           
+       101 Prasad               GNT               101                           
+       102 Mukesh               HYD               103                           
+       104 Ramesh               HYD               102                           
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZAT                                      
+---------- -------------------- ----------                                      
+       101 Ravi                 Heart                                           
+       102 Ramu                 Brain                                           
+       103 Rajesh               Bones                                           
+
+SQL> insert into patients values(null,'Hari', 'VIZ', 101);
+insert into patients values(null,'Hari', 'VIZ', 101)
+                            *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."PATIENTS"."ID") 
+
+
+SQL> insert into patients values(null,'Hari', 'VIZ', 104);
+insert into patients values(null,'Hari', 'VIZ', 104)
+                            *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."PATIENTS"."ID") 
+
+
+SQL> insert into patients values(110,'Hari', 'VIZ', 104);
+insert into patients values(110,'Hari', 'VIZ', 104)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C008325) violated - parent key not 
+found 
+
+
+SQL> create view doctor_patient as select * from patients where doctor_id = 101;
+
+View created.
+
+SQL> select * from doctor_patient;
+
+        ID NAME                 ADDRESS     DOCTOR_ID                           
+---------- -------------------- ---------- ----------                           
+       101 Prasad               GNT               101                           
+
+SQL> insert into patients values(110, 'Malli', 'ONG', 101);
+
+1 row created.
+
+SQL> select * from patients;
+
+        ID NAME                 ADDRESS     DOCTOR_ID                           
+---------- -------------------- ---------- ----------                           
+       101 Prasad               GNT               101                           
+       102 Mukesh               HYD               103                           
+       104 Ramesh               HYD               102                           
+       110 Malli                ONG               101                           
+
+SQL> select * from doctor_patient;
+
+        ID NAME                 ADDRESS     DOCTOR_ID                           
+---------- -------------------- ---------- ----------                           
+       101 Prasad               GNT               101                           
+       110 Malli                ONG               101                           
+
+SQL> drop view doctor_patient;
+
+View dropped.
+

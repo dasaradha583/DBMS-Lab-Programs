@@ -1,0 +1,74 @@
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Ears                 45000                                           
+
+SQL> insert into doctors values(106, 'Mahesh', 'Bones', 50000);
+
+1 row created.
+
+
+SQL> savepoint a;
+
+Savepoint created.
+
+SQL> update doctors set salary = 60000 where id = 101;
+
+1 row updated.
+
+SQL> savepoint b;
+
+Savepoint created.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                60000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Ears                 45000                                           
+       106 Mahesh               Bones                50000                      
+
+4 rows selected.
+
+SQL> update doctors set salary = 80000;
+
+4 rows updated.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                80000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Ears                 80000                                           
+       106 Mahesh               Bones                80000                      
+
+4 rows selected.
+
+SQL> rollback to b;
+
+Rollback complete.
+
+SQL> rollback to a;
+
+Rollback complete.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Ears                 45000                                            
+       106 Mahesh               Bones                50000                      
+
+4 rows selected.
+
+SQL> commit;
+
+Commit complete.

@@ -1,0 +1,44 @@
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Ears                 45000                      
+       105 Hari                 Eyes                 40000                      
+       104 Ajay                 Ears                 45000                      
+       106 Mahesh               Bones                50000                      
+
+6 rows selected.
+
+SQL> select specalization, count(*) from doctors group by specalization;
+
+SPECALIZATION     COUNT(*)                                                      
+--------------- ----------                                                      
+Heart                    1                                                      
+Brain                    1                                                      
+Ears                     2                                                      
+Eyes                     1                                                      
+Bones                    1                                                      
+
+
+
+SQL> select specalization, count(*) from doctors group by specalization having count(*) > 1;
+
+SPECALIZATION     COUNT(*)                                                      
+--------------- ----------                                                      
+Ears                     2                                                      
+
+SQL> select * from doctors order by salary desc;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       102 Ramu                 Brain                80000                      
+       101 Ravi                 Heart                50000                      
+       106 Mahesh               Bones                50000                      
+       103 Rajesh               Ears                 45000                      
+       104 Ajay                 Ears                 45000                      
+       105 Hari                 Eyes                 40000                      
+
+6 rows selected.

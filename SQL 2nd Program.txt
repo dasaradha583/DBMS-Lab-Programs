@@ -1,0 +1,171 @@
+SQL> select specalization, count(*) from doctors group by specalization;
+
+SPECALIZATION     COUNT(*)                                                      
+--------------- ----------                                                      
+Heart                    1                                                      
+Brain                    1                                                      
+Ears                     3                                                      
+Eyes                     1                                                      
+Bones                    1                                                      
+
+SQL> select max(salary) as max, min(salary) as min from doctors;
+
+       MAX        MIN                                                           
+---------- ----------                                                           
+     80000      35000                                                           
+
+SQL> select avg(salary) as avg_salary from doctors;
+
+AVG_SALARY                                                                      
+----------                                                                      
+49285.7143                                                                      
+
+SQL> select sum(salary) as sum from doctors;
+
+       SUM                                                                      
+----------                                                                      
+    345000                                                                      
+
+SQL> select sin(90) from dual;
+
+   SIN(90)                                                                      
+----------                                                                      
+.893996664                                                                      
+
+SQL> select cos(45) from dual;
+
+   COS(45)                                                                      
+----------                                                                      
+.525321989                                                                      
+
+SQL> select abs(-12) from dual;
+
+  ABS(-12)                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> select asin(45*0.017455) from dual;
+
+ASIN(45*0.017455)                                                               
+-----------------                                                               
+       .903463253                                                               
+
+SQL> select acos(0) from dual;
+
+   ACOS(0)                                                                      
+----------                                                                      
+1.57079633                                                                      
+
+SQL> select power(3,3) from dual;
+
+POWER(3,3)                                                                      
+----------                                                                      
+        27                                                                      
+
+SQL> select sqrt(144) from dual;
+
+ SQRT(144)                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> select concat('Dasaradha', 'Bikkam') as Name from dual;
+
+NAME                                                                            
+---------------                                                                 
+DasaradhaBikkam                                                                 
+
+SQL> select replace('database', 'a', 'e') from dual;
+
+REPLACE(                                                                        
+--------                                                                        
+detebese                                                                        
+
+SQL> select lower('DBMS') as lowercase from dual;
+
+LOWE                                                                            
+----                                                                            
+dbms                                                                            
+
+SQL> select upper('DBMS') as upperrcase from dual;
+
+UPPE                                                                            
+----                                                                            
+DBMS                                                                            
+
+SQL> select trim('   DBMS   ') from dual;
+
+TRIM                                                                            
+----                                                                            
+DBMS                                                                            
+
+SQL> select trim( Trailing 'S' from 'DBMS') trim from dual;
+
+TRI                                                                             
+---                                                                             
+DBM                                                                             
+
+SQL> select trim( Leading 'D' from 'DBMS') trim from dual;
+
+TRI                                                                             
+---                                                                             
+BMS                                                                             
+
+
+
+SQL> select lpad(name, 7, '*') from doctors;
+
+LPAD(NAME,7,'*')                                                                
+----------------------------                                                    
+***Ravi                                                                         
+***Ramu                                                                         
+*Rajesh                                                                         
+***Hari                                                                         
+                                                                         
+
+4 rows selected.
+
+SQL> select length('This is a example') from dual;
+
+LENGTH('THISISAEXAMPLE')                                                        
+------------------------                                                        
+                      17                                                        
+
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+03-APR-24                                                                       
+
+SQL> select sysdate+10 from dual;
+
+SYSDATE+1                                                                       
+---------                                                                       
+13-APR-24                                                                       
+
+SQL> select to_char(sysdate, 'MM-DD-YYYY HH24:MI:SS') as now from dual;
+
+NOW                                                                             
+-------------------                                                             
+04-03-2024 00:05:08                                                             
+
+SQL> select add_months(sysdate, 4) from dual;
+
+ADD_MONTH                                                                       
+---------                                                                       
+03-AUG-24                                                                       
+
+SQL> select next_day(sysdate+7, 'Tuesday') next from dual;
+
+NEXT                                                                            
+---------                                                                       
+16-APR-24                                                                       
+
+SQL> select current_date as today, sessiontimezone from dual;
+
+TODAY                                                                           
+---------                                                                       
+SESSIONTIMEZONE                                                                 
+---------------------------------------------------------------------------     
+03-APR-24                                                                       
++05:30                                                                          
+

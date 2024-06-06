@@ -1,0 +1,78 @@
+SQL> insert into doctors values(106, 'Mahi', 'Skin', 60000);
+
+1 row created.
+
+SQL> insert into doctors(id, name, specalization, salary) values(&id, &name, &specalization, &salary);
+Enter value for id: 107
+Enter value for name: 'Srinu'
+Enter value for specalization: 'Eyes'
+Enter value for salary: 45000
+old   1: insert into doctors(id, name, specalization, salary) values(&id, &name, &specalization, &salary)
+new   1: insert into doctors(id, name, specalization, salary) values(107, 'Srinu', 'Eyes', 45000)
+
+1 row created.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                                           
+       105 Hari                 Eyes                 40000                      
+       104 Venkat               Ears                 45000                      
+       106 Mahi                 Skin                 60000                      
+       107 Srinu                Eyes                 45000                      
+
+4 rows selected.
+
+SQL> select id, name from doctors;
+
+        ID NAME                                                                 
+---------- --------------------                                                                                                              
+       105 Hari                                                                 
+       104 Venkat                                                               
+       106 Mahi                                                                 
+       107 Srinu                                                                
+
+4 rows selected.
+
+SQL> select id,name,specalization as spec from doctors;
+
+        ID NAME                 SPEC                                            
+---------- -------------------- ---------------                                                                         
+       105 Hari                 Eyes                                            
+       104 Venkat               Ears                                            
+       106 Mahi                 Skin                                            
+       107 Srinu                Eyes                                            
+
+4 rows selected.
+
+SQL> update doctors set name = 'Ajay' where id = 104;
+
+1 row updated.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                                        
+       105 Hari                 Eyes                 40000                      
+       104 Ajay                 Ears                 45000                      
+       106 Mahi                 Skin                 60000                      
+       107 Srinu                Eyes                 45000                      
+
+4 rows selected.
+
+SQL> delete from doctors where id = 107;
+
+1 row deleted.
+
+SQL> delete from doctors where id = 106;
+
+1 row deleted.
+
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                                          
+       105 Hari                 Eyes                 40000                      
+       104 Ajay                 Ears                 45000                      
+
+SQL> spool off;

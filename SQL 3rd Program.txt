@@ -1,0 +1,58 @@
+SQL> select * from doctors;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Bones                45000                      
+       104 Hari                 Eyes                 40000                      
+                             
+
+SQL> select * from doctors where salary >= 50000;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+
+SQL> select * from doctors where salary between 40000 and 50000;
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       103 Rajesh               Bones                45000                      
+       104 Hari                 Eyes                 40000                      
+                             
+
+SQL> select * from doctors where salary in(45000,60000);
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       103 Rajesh               Bones                45000                      
+                             
+
+SQL> select * from doctors where name like 'Ra%';
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Bones                45000                      
+
+SQL> select * from doctors where name like '%i';
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       104 Hari                 Eyes                 40000                      
+
+SQL> select * from doctors where name like '%_a%';
+
+        ID NAME                 SPECALIZATION       SALARY                      
+---------- -------------------- --------------- ----------                      
+       101 Ravi                 Heart                50000                      
+       102 Ramu                 Brain                80000                      
+       103 Rajesh               Bones                45000                      
+       104 Hari                 Eyes                 40000                      
+                             
+

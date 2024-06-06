@@ -1,0 +1,64 @@
+SQL> select * from patients;
+
+        ID NAME                 ADDRESS     DOCTOR_ID                           
+---------- -------------------- ---------- ----------                           
+       101 Prasad               GNT               101                           
+       102 Mukesh               HYD               103                           
+       104 Ramesh               HYD               102                           
+       110 Malli                ONG               101                           
+       107 Ajay                 GNT               108                           
+
+SQL> select * from doctor;
+
+ DOCTOR_ID NAME                                                                 
+---------- ----------                                                           
+       101 Hari                                                                 
+       102 Venkat                                                               
+       103 Rajesh                                                               
+       105 Suresh                                                               
+
+SQL> select * from patients p inner join doctor d on p.doctor_id = d.doctor_id;
+
+        ID NAME                 ADDRESS     DOCTOR_ID  DOCTOR_ID NAME           
+---------- -------------------- ---------- ---------- ---------- ----------     
+       101 Prasad               GNT               101        101 Hari           
+       102 Mukesh               HYD               103        103 Rajesh         
+       104 Ramesh               HYD               102        102 Venkat         
+       110 Malli                ONG               101        101 Hari           
+
+SQL> select * from patients p natural join doctor d;
+
+no rows selected
+
+SQL> select * from patients p left outer join doctor d  on d.doctor_id = p.doctor_id;
+
+        ID NAME                 ADDRESS     DOCTOR_ID  DOCTOR_ID NAME           
+---------- -------------------- ---------- ---------- ---------- ----------     
+       101 Prasad               GNT               101        101 Hari           
+       110 Malli                ONG               101        101 Hari           
+       104 Ramesh               HYD               102        102 Venkat         
+       102 Mukesh               HYD               103        103 Rajesh         
+       107 Ajay                 GNT               108                           
+
+SQL> select * from patients p right outer join doctor d  on d.doctor_id = p.doctor_id;
+
+        ID NAME                 ADDRESS     DOCTOR_ID  DOCTOR_ID NAME           
+---------- -------------------- ---------- ---------- ---------- ----------     
+       101 Prasad               GNT               101        101 Hari           
+       102 Mukesh               HYD               103        103 Rajesh         
+       104 Ramesh               HYD               102        102 Venkat         
+       110 Malli                ONG               101        101 Hari           
+                                                             105 Suresh         
+
+SQL> select * from patients p full outer join doctor d  on d.doctor_id = p.doctor_id;
+
+        ID NAME                 ADDRESS     DOCTOR_ID  DOCTOR_ID NAME           
+---------- -------------------- ---------- ---------- ---------- ----------     
+       101 Prasad               GNT               101        101 Hari           
+       102 Mukesh               HYD               103        103 Rajesh         
+       104 Ramesh               HYD               102        102 Venkat         
+       110 Malli                ONG               101        101 Hari           
+       107 Ajay                 GNT               108                           
+                                                             105 Suresh         
+
+6 rows selected.
